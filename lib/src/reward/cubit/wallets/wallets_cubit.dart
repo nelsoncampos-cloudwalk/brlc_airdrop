@@ -14,8 +14,6 @@ class WalletsCubit extends Cubit<WalletsState> {
     emit(const WalletsState.loading());
 
     final cred = EthPrivateKey.fromInt(BigInt.from(420));
-    final cred1 = EthPrivateKey.fromHex('yourPrivateKey');
-    final cred2 = EthPrivateKey.createRandom(Random());
 
     emit(WalletsState.success(wallet: cred));
   }
