@@ -1,4 +1,5 @@
 import 'package:brlc_airdrop/src/reward/cubit/transfer/transfer_cubit.dart';
+import 'package:design_system/design_system.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -53,7 +54,12 @@ class _RewardPageState extends State<RewardPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Center(child: Text('Rewarder Wallet: ${wallet.address.hex}')),
+                  Center(
+                    child: Text(
+                      'Rewarder Wallet: ${wallet.address.hex}',
+                      style: context.typography.bodyRegular,
+                    ),
+                  ),
                   const SizedBox(height: 48),
                   _Balance(brlcProxy: brlcProxy, wallet: wallet),
                   const SizedBox(height: 48),
@@ -104,33 +110,23 @@ class __SendState extends State<_Send> {
           child: Container(
             margin: const EdgeInsets.symmetric(horizontal: 24),
             width: 300,
-            child: TextField(
+            child: InfiniteTextField(
               controller: addressController,
               keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                label: const Text(
-                  'To',
-                  style: TextStyle(color: Colors.black, fontSize: 18),
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
-                  borderSide: const BorderSide(
-                    color: Colors.black,
-                  ),
-                ),
-              ),
+              label: "Sua carteira",
             ),
           ),
         ),
         const SizedBox(height: 48),
-        FloatingActionButton(
-          onPressed: () async {
+        InfiniteButton(
+          isExpanded: false,
+          onTap: () async {
             await transferCubit.transfer(
               address: addressController.text,
               amount: 8.5,
             );
           },
-          child: const Icon(CupertinoIcons.checkmark_alt),
+          label: "Regastar",
         ),
         BlocBuilder<TransferCubit, TransferState>(
           bloc: transferCubit,
@@ -143,9 +139,8 @@ class __SendState extends State<_Send> {
                 ),
                 child: Text(
                   "https://explorer.mainnet.cloudwalk.io/tx/$tx",
-                  style: const TextStyle(
-                    color: Colors.blue,
-                    decoration: TextDecoration.underline,
+                  style: context.typography.bodyRegular.copyWith(
+                    color: kColorBrandPrimary,
                   ),
                 ),
               ),
@@ -196,9 +191,16 @@ class __BalanceState extends State<_Balance> {
         return state.maybeWhen(
           success: (symbol, balance) => Text(
             '$symbol balance: $balance',
+            style: context.typography.bodyRegular,
           ),
-          error: () => const Text('Error to load the balance'),
-          orElse: () => const Text('Loading Balance'),
+          error: () => Text(
+            'Error to load the balance',
+            style: context.typography.bodyRegular,
+          ),
+          orElse: () => Text(
+            'Loading Balance',
+            style: context.typography.bodyRegular,
+          ),
         );
       },
     );

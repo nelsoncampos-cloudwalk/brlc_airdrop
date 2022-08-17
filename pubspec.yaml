@@ -36,9 +36,13 @@ dependencies:
   cupertino_icons: ^1.0.2
   web3dart: ^2.3.5
   flutter_bloc: ^8.0.1
-  freezed: ^2.1.0+1
+  freezed: ^1.1.1
   build_runner: ^2.2.0
   url_launcher: ^6.1.5
+  design_system:
+    git:
+      url: git@github.com:cloudwalk/infinitepay-designsystem-flutter.git
+      ref: develop
 
 dev_dependencies:
   flutter_test:
