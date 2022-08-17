@@ -28,7 +28,7 @@ class _RewardPageState extends State<RewardPage> {
       address: EthereumAddress.fromHex(
         '0xA9a55a81a4C085EC0C31585Aed4cFB09D78dfD53',
       ),
-      client: Web3Client('https://rpc.mainnet.cloudwalk.io', Client()),
+      client: Web3Client('https://rpc.services.mainnet.cloudwalk.io', Client()),
       chainId: 2009,
     ),
   );
