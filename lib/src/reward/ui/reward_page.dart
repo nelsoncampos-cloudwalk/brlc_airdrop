@@ -127,7 +127,7 @@ class __SendState extends State<_Send> {
           onPressed: () async {
             await transferCubit.transfer(
               address: addressController.text,
-              amount: 1.5,
+              amount: 8.5,
             );
           },
           child: const Icon(CupertinoIcons.checkmark_alt),

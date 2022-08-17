@@ -36377,7 +36377,7 @@ $0(){var s=0,r=A.a1(t.H),q=this,p
 var $async$$0=A.a2(function(a,b){if(a===1)return A.Z(b,r)
 while(true)switch(s){case 0:p=q.a
 s=2
-return A.X(A.b(p.e,"transferCubit").nh(p.d.a.a,1.5),$async$$0)
+return A.X(A.b(p.e,"transferCubit").nh(p.d.a.a,8.5),$async$$0)
 case 2:return A.a_(null,r)}})
 return A.a0($async$$0,r)},
 $S:35}
