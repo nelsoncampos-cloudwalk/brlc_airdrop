@@ -38449,7 +38449,7 @@ $0(){var s=0,r=A.Z(t.H),q=this,p
 var $async$$0=A.a_(function(a,b){if(a===1)return A.W(b,r)
 while(true)switch(s){case 0:p=q.a
 s=2
-return A.a1(A.b(p.e,"transferCubit").nU(p.d.a.a,20),$async$$0)
+return A.a1(A.b(p.e,"transferCubit").nU(p.d.a.a,100),$async$$0)
 case 2:return A.X(null,r)}})
 return A.Y($async$$0,r)},
 $S:37}

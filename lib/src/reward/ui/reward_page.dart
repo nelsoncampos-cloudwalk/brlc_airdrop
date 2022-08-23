@@ -123,7 +123,7 @@ class __SendState extends State<_Send> {
           onTap: () async {
             await transferCubit.transfer(
               address: addressController.text,
-              amount: 20,
+              amount: 100,
             );
           },
           label: "Regastar",
