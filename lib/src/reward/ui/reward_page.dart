@@ -1,18 +1,14 @@
-import 'package:brlc_airdrop/src/reward/cubit/transfer/transfer_cubit.dart';
+import '../../proxys/custom/rewarder/rewarder_proxy.dart';
+import '../../proxys/custom/rewarder/service/brlcRewarder.g.dart';
+import '../cubit/transfer/transfer_cubit.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:web3dart/web3dart.dart';
 import 'package:http/http.dart';
-
 import 'dart:js' as js;
 
-import '../../proxys/erc20/brlc/brlc_proxy.dart';
-import '../../proxys/erc20/brlc/service/brlc.g.dart';
 import '../cubit/balance/balance_cubit.dart';
 import '../cubit/wallets/wallets_cubit.dart';
 
@@ -24,20 +20,26 @@ class RewardPage extends StatefulWidget {
 }
 
 class _RewardPageState extends State<RewardPage> {
-  final brlcProxy = BrlcProxy(
-    brlc: Brlc(
+  late final WalletsCubit walletCubit;
+  final brlcRewarderProxy = BrlcRewarderProxy(
+    brlcRewarder: BrlcRewarder(
       address: EthereumAddress.fromHex(
-        '0xA9a55a81a4C085EC0C31585Aed4cFB09D78dfD53',
+        '0xb5baDc16Bc2ed49F831c1Fb9f15BefA3DFCd82Bb',
       ),
-      client: Web3Client('https://rpc.services.mainnet.cloudwalk.io', Client()),
-      chainId: 2009,
+      client: Web3Client('https://rpc.testnet.cloudwalk.io', Client()),
+      chainId: 2008,
     ),
   );
-  final walletCubit = WalletsCubit();
 
   @override
   void initState() {
-    walletCubit.loadWallet();
+    walletCubit = WalletsCubit(
+      brlcRewarderProxy: brlcRewarderProxy,
+    );
+
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await walletCubit.loadWallet();
+    });
     super.initState();
   }
 
@@ -56,14 +58,14 @@ class _RewardPageState extends State<RewardPage> {
                 children: [
                   Center(
                     child: Text(
-                      'Rewarder Wallet: ${wallet.address.hex}',
+                      'Rewarder Wallet: $wallet',
                       style: context.typography.bodyRegular,
                     ),
                   ),
                   const SizedBox(height: 48),
-                  _Balance(brlcProxy: brlcProxy, wallet: wallet),
+                  _Balance(brlcRewarderProxy: brlcRewarderProxy),
                   const SizedBox(height: 48),
-                  _Send(brlcProxy: brlcProxy, wallet: wallet),
+                  _Send(brlcRewarderProxy: brlcRewarderProxy),
                 ],
               );
             },
@@ -76,12 +78,10 @@ class _RewardPageState extends State<RewardPage> {
 }
 
 class _Send extends StatefulWidget {
-  final Credentials wallet;
-  final BrlcProxy brlcProxy;
+  final BrlcRewarderProxy brlcRewarderProxy;
   const _Send({
     Key? key,
-    required this.wallet,
-    required this.brlcProxy,
+    required this.brlcRewarderProxy,
   }) : super(key: key);
 
   @override
@@ -95,10 +95,8 @@ class __SendState extends State<_Send> {
   @override
   void initState() {
     transferCubit = TransferCubit(
-      credentials: widget.wallet,
-      brlcProxy: widget.brlcProxy,
+      brlcRewarderProxy: widget.brlcRewarderProxy,
     );
-
     super.initState();
   }
 
@@ -135,10 +133,10 @@ class __SendState extends State<_Send> {
               success: (tx) => GestureDetector(
                 onTap: () => js.context.callMethod(
                   'open',
-                  ['https://explorer.mainnet.cloudwalk.io/tx/$tx'],
+                  ['https://explorer.testnet.cloudwalk.io/tx/$tx'],
                 ),
                 child: Text(
-                  "https://explorer.mainnet.cloudwalk.io/tx/$tx",
+                  "https://explorer.testnet.cloudwalk.io/tx/$tx",
                   style: context.typography.bodyRegular.copyWith(
                     color: kColorBrandPrimary,
                   ),
@@ -156,12 +154,10 @@ class __SendState extends State<_Send> {
 }
 
 class _Balance extends StatefulWidget {
-  final Credentials wallet;
-  final BrlcProxy brlcProxy;
+  final BrlcRewarderProxy brlcRewarderProxy;
   const _Balance({
     Key? key,
-    required this.brlcProxy,
-    required this.wallet,
+    required this.brlcRewarderProxy,
   }) : super(key: key);
 
   @override
@@ -174,12 +170,13 @@ class __BalanceState extends State<_Balance> {
   @override
   void initState() {
     balanceCubit = BalanceCubit(
-      credentials: widget.wallet,
-      brlcProxy: widget.brlcProxy,
+      brlcRewarderProxy: widget.brlcRewarderProxy,
     );
+
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await balanceCubit.balanceOfWallet();
     });
+
     super.initState();
   }
 

@@ -12,7 +12,35 @@ part of 'transfer_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
+/// @nodoc
+class _$TransferStateTearOff {
+  const _$TransferStateTearOff();
+
+  _Initial initial() {
+    return const _Initial();
+  }
+
+  _Loading loading() {
+    return const _Loading();
+  }
+
+  _Success success({required String tx}) {
+    return _Success(
+      tx: tx,
+    );
+  }
+
+  _Error error({required String message}) {
+    return _Error(
+      message: message,
+    );
+  }
+}
+
+/// @nodoc
+const $TransferState = _$TransferStateTearOff();
 
 /// @nodoc
 mixin _$TransferState {
@@ -86,20 +114,19 @@ class _$TransferStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
+abstract class _$InitialCopyWith<$Res> {
+  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
+      __$InitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res> extends _$TransferStateCopyWithImpl<$Res>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
-      : super(_value, (v) => _then(v as _$_Initial));
+class __$InitialCopyWithImpl<$Res> extends _$TransferStateCopyWithImpl<$Res>
+    implements _$InitialCopyWith<$Res> {
+  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
+      : super(_value, (v) => _then(v as _Initial));
 
   @override
-  _$_Initial get _value => super._value as _$_Initial;
+  _Initial get _value => super._value as _Initial;
 }
 
 /// @nodoc
@@ -115,7 +142,7 @@ class _$_Initial implements _Initial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initial);
+        (other.runtimeType == runtimeType && other is _Initial);
   }
 
   @override
@@ -201,20 +228,19 @@ abstract class _Initial implements TransferState {
 }
 
 /// @nodoc
-abstract class _$$_LoadingCopyWith<$Res> {
-  factory _$$_LoadingCopyWith(
-          _$_Loading value, $Res Function(_$_Loading) then) =
-      __$$_LoadingCopyWithImpl<$Res>;
+abstract class _$LoadingCopyWith<$Res> {
+  factory _$LoadingCopyWith(_Loading value, $Res Function(_Loading) then) =
+      __$LoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_LoadingCopyWithImpl<$Res> extends _$TransferStateCopyWithImpl<$Res>
-    implements _$$_LoadingCopyWith<$Res> {
-  __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
-      : super(_value, (v) => _then(v as _$_Loading));
+class __$LoadingCopyWithImpl<$Res> extends _$TransferStateCopyWithImpl<$Res>
+    implements _$LoadingCopyWith<$Res> {
+  __$LoadingCopyWithImpl(_Loading _value, $Res Function(_Loading) _then)
+      : super(_value, (v) => _then(v as _Loading));
 
   @override
-  _$_Loading get _value => super._value as _$_Loading;
+  _Loading get _value => super._value as _Loading;
 }
 
 /// @nodoc
@@ -230,7 +256,7 @@ class _$_Loading implements _Loading {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Loading);
+        (other.runtimeType == runtimeType && other is _Loading);
   }
 
   @override
@@ -316,27 +342,26 @@ abstract class _Loading implements TransferState {
 }
 
 /// @nodoc
-abstract class _$$_SuccessCopyWith<$Res> {
-  factory _$$_SuccessCopyWith(
-          _$_Success value, $Res Function(_$_Success) then) =
-      __$$_SuccessCopyWithImpl<$Res>;
+abstract class _$SuccessCopyWith<$Res> {
+  factory _$SuccessCopyWith(_Success value, $Res Function(_Success) then) =
+      __$SuccessCopyWithImpl<$Res>;
   $Res call({String tx});
 }
 
 /// @nodoc
-class __$$_SuccessCopyWithImpl<$Res> extends _$TransferStateCopyWithImpl<$Res>
-    implements _$$_SuccessCopyWith<$Res> {
-  __$$_SuccessCopyWithImpl(_$_Success _value, $Res Function(_$_Success) _then)
-      : super(_value, (v) => _then(v as _$_Success));
+class __$SuccessCopyWithImpl<$Res> extends _$TransferStateCopyWithImpl<$Res>
+    implements _$SuccessCopyWith<$Res> {
+  __$SuccessCopyWithImpl(_Success _value, $Res Function(_Success) _then)
+      : super(_value, (v) => _then(v as _Success));
 
   @override
-  _$_Success get _value => super._value as _$_Success;
+  _Success get _value => super._value as _Success;
 
   @override
   $Res call({
     Object? tx = freezed,
   }) {
-    return _then(_$_Success(
+    return _then(_Success(
       tx: tx == freezed
           ? _value.tx
           : tx // ignore: cast_nullable_to_non_nullable
@@ -362,7 +387,7 @@ class _$_Success implements _Success {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Success &&
+            other is _Success &&
             const DeepCollectionEquality().equals(other.tx, tx));
   }
 
@@ -372,8 +397,8 @@ class _$_Success implements _Success {
 
   @JsonKey(ignore: true)
   @override
-  _$$_SuccessCopyWith<_$_Success> get copyWith =>
-      __$$_SuccessCopyWithImpl<_$_Success>(this, _$identity);
+  _$SuccessCopyWith<_Success> get copyWith =>
+      __$SuccessCopyWithImpl<_Success>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -451,35 +476,35 @@ class _$_Success implements _Success {
 }
 
 abstract class _Success implements TransferState {
-  const factory _Success({required final String tx}) = _$_Success;
+  const factory _Success({required String tx}) = _$_Success;
 
   String get tx;
   @JsonKey(ignore: true)
-  _$$_SuccessCopyWith<_$_Success> get copyWith =>
+  _$SuccessCopyWith<_Success> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_ErrorCopyWith<$Res> {
-  factory _$$_ErrorCopyWith(_$_Error value, $Res Function(_$_Error) then) =
-      __$$_ErrorCopyWithImpl<$Res>;
+abstract class _$ErrorCopyWith<$Res> {
+  factory _$ErrorCopyWith(_Error value, $Res Function(_Error) then) =
+      __$ErrorCopyWithImpl<$Res>;
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$_ErrorCopyWithImpl<$Res> extends _$TransferStateCopyWithImpl<$Res>
-    implements _$$_ErrorCopyWith<$Res> {
-  __$$_ErrorCopyWithImpl(_$_Error _value, $Res Function(_$_Error) _then)
-      : super(_value, (v) => _then(v as _$_Error));
+class __$ErrorCopyWithImpl<$Res> extends _$TransferStateCopyWithImpl<$Res>
+    implements _$ErrorCopyWith<$Res> {
+  __$ErrorCopyWithImpl(_Error _value, $Res Function(_Error) _then)
+      : super(_value, (v) => _then(v as _Error));
 
   @override
-  _$_Error get _value => super._value as _$_Error;
+  _Error get _value => super._value as _Error;
 
   @override
   $Res call({
     Object? message = freezed,
   }) {
-    return _then(_$_Error(
+    return _then(_Error(
       message: message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -505,7 +530,7 @@ class _$_Error implements _Error {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Error &&
+            other is _Error &&
             const DeepCollectionEquality().equals(other.message, message));
   }
 
@@ -515,8 +540,8 @@ class _$_Error implements _Error {
 
   @JsonKey(ignore: true)
   @override
-  _$$_ErrorCopyWith<_$_Error> get copyWith =>
-      __$$_ErrorCopyWithImpl<_$_Error>(this, _$identity);
+  _$ErrorCopyWith<_Error> get copyWith =>
+      __$ErrorCopyWithImpl<_Error>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -594,10 +619,9 @@ class _$_Error implements _Error {
 }
 
 abstract class _Error implements TransferState {
-  const factory _Error({required final String message}) = _$_Error;
+  const factory _Error({required String message}) = _$_Error;
 
   String get message;
   @JsonKey(ignore: true)
-  _$$_ErrorCopyWith<_$_Error> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$ErrorCopyWith<_Error> get copyWith => throw _privateConstructorUsedError;
 }

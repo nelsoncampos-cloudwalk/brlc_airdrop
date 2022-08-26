@@ -12,7 +12,29 @@ part of 'wallets_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
+/// @nodoc
+class _$WalletsStateTearOff {
+  const _$WalletsStateTearOff();
+
+  _Initial initial() {
+    return const _Initial();
+  }
+
+  _Loading loading() {
+    return const _Loading();
+  }
+
+  _Success success({required String wallet}) {
+    return _Success(
+      wallet: wallet,
+    );
+  }
+}
+
+/// @nodoc
+const $WalletsState = _$WalletsStateTearOff();
 
 /// @nodoc
 mixin _$WalletsState {
@@ -20,21 +42,21 @@ mixin _$WalletsState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(EthPrivateKey wallet) success,
+    required TResult Function(String wallet) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(EthPrivateKey wallet)? success,
+    TResult Function(String wallet)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(EthPrivateKey wallet)? success,
+    TResult Function(String wallet)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -79,20 +101,19 @@ class _$WalletsStateCopyWithImpl<$Res> implements $WalletsStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
+abstract class _$InitialCopyWith<$Res> {
+  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
+      __$InitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res> extends _$WalletsStateCopyWithImpl<$Res>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
-      : super(_value, (v) => _then(v as _$_Initial));
+class __$InitialCopyWithImpl<$Res> extends _$WalletsStateCopyWithImpl<$Res>
+    implements _$InitialCopyWith<$Res> {
+  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
+      : super(_value, (v) => _then(v as _Initial));
 
   @override
-  _$_Initial get _value => super._value as _$_Initial;
+  _Initial get _value => super._value as _Initial;
 }
 
 /// @nodoc
@@ -108,7 +129,7 @@ class _$_Initial implements _Initial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initial);
+        (other.runtimeType == runtimeType && other is _Initial);
   }
 
   @override
@@ -119,7 +140,7 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(EthPrivateKey wallet) success,
+    required TResult Function(String wallet) success,
   }) {
     return initial();
   }
@@ -129,7 +150,7 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(EthPrivateKey wallet)? success,
+    TResult Function(String wallet)? success,
   }) {
     return initial?.call();
   }
@@ -139,7 +160,7 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(EthPrivateKey wallet)? success,
+    TResult Function(String wallet)? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -188,20 +209,19 @@ abstract class _Initial implements WalletsState {
 }
 
 /// @nodoc
-abstract class _$$_LoadingCopyWith<$Res> {
-  factory _$$_LoadingCopyWith(
-          _$_Loading value, $Res Function(_$_Loading) then) =
-      __$$_LoadingCopyWithImpl<$Res>;
+abstract class _$LoadingCopyWith<$Res> {
+  factory _$LoadingCopyWith(_Loading value, $Res Function(_Loading) then) =
+      __$LoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_LoadingCopyWithImpl<$Res> extends _$WalletsStateCopyWithImpl<$Res>
-    implements _$$_LoadingCopyWith<$Res> {
-  __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
-      : super(_value, (v) => _then(v as _$_Loading));
+class __$LoadingCopyWithImpl<$Res> extends _$WalletsStateCopyWithImpl<$Res>
+    implements _$LoadingCopyWith<$Res> {
+  __$LoadingCopyWithImpl(_Loading _value, $Res Function(_Loading) _then)
+      : super(_value, (v) => _then(v as _Loading));
 
   @override
-  _$_Loading get _value => super._value as _$_Loading;
+  _Loading get _value => super._value as _Loading;
 }
 
 /// @nodoc
@@ -217,7 +237,7 @@ class _$_Loading implements _Loading {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Loading);
+        (other.runtimeType == runtimeType && other is _Loading);
   }
 
   @override
@@ -228,7 +248,7 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(EthPrivateKey wallet) success,
+    required TResult Function(String wallet) success,
   }) {
     return loading();
   }
@@ -238,7 +258,7 @@ class _$_Loading implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(EthPrivateKey wallet)? success,
+    TResult Function(String wallet)? success,
   }) {
     return loading?.call();
   }
@@ -248,7 +268,7 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(EthPrivateKey wallet)? success,
+    TResult Function(String wallet)? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -297,31 +317,30 @@ abstract class _Loading implements WalletsState {
 }
 
 /// @nodoc
-abstract class _$$_SuccessCopyWith<$Res> {
-  factory _$$_SuccessCopyWith(
-          _$_Success value, $Res Function(_$_Success) then) =
-      __$$_SuccessCopyWithImpl<$Res>;
-  $Res call({EthPrivateKey wallet});
+abstract class _$SuccessCopyWith<$Res> {
+  factory _$SuccessCopyWith(_Success value, $Res Function(_Success) then) =
+      __$SuccessCopyWithImpl<$Res>;
+  $Res call({String wallet});
 }
 
 /// @nodoc
-class __$$_SuccessCopyWithImpl<$Res> extends _$WalletsStateCopyWithImpl<$Res>
-    implements _$$_SuccessCopyWith<$Res> {
-  __$$_SuccessCopyWithImpl(_$_Success _value, $Res Function(_$_Success) _then)
-      : super(_value, (v) => _then(v as _$_Success));
+class __$SuccessCopyWithImpl<$Res> extends _$WalletsStateCopyWithImpl<$Res>
+    implements _$SuccessCopyWith<$Res> {
+  __$SuccessCopyWithImpl(_Success _value, $Res Function(_Success) _then)
+      : super(_value, (v) => _then(v as _Success));
 
   @override
-  _$_Success get _value => super._value as _$_Success;
+  _Success get _value => super._value as _Success;
 
   @override
   $Res call({
     Object? wallet = freezed,
   }) {
-    return _then(_$_Success(
+    return _then(_Success(
       wallet: wallet == freezed
           ? _value.wallet
           : wallet // ignore: cast_nullable_to_non_nullable
-              as EthPrivateKey,
+              as String,
     ));
   }
 }
@@ -332,7 +351,7 @@ class _$_Success implements _Success {
   const _$_Success({required this.wallet});
 
   @override
-  final EthPrivateKey wallet;
+  final String wallet;
 
   @override
   String toString() {
@@ -343,7 +362,7 @@ class _$_Success implements _Success {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Success &&
+            other is _Success &&
             const DeepCollectionEquality().equals(other.wallet, wallet));
   }
 
@@ -353,15 +372,15 @@ class _$_Success implements _Success {
 
   @JsonKey(ignore: true)
   @override
-  _$$_SuccessCopyWith<_$_Success> get copyWith =>
-      __$$_SuccessCopyWithImpl<_$_Success>(this, _$identity);
+  _$SuccessCopyWith<_Success> get copyWith =>
+      __$SuccessCopyWithImpl<_Success>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(EthPrivateKey wallet) success,
+    required TResult Function(String wallet) success,
   }) {
     return success(wallet);
   }
@@ -371,7 +390,7 @@ class _$_Success implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(EthPrivateKey wallet)? success,
+    TResult Function(String wallet)? success,
   }) {
     return success?.call(wallet);
   }
@@ -381,7 +400,7 @@ class _$_Success implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(EthPrivateKey wallet)? success,
+    TResult Function(String wallet)? success,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -426,10 +445,10 @@ class _$_Success implements _Success {
 }
 
 abstract class _Success implements WalletsState {
-  const factory _Success({required final EthPrivateKey wallet}) = _$_Success;
+  const factory _Success({required String wallet}) = _$_Success;
 
-  EthPrivateKey get wallet;
+  String get wallet;
   @JsonKey(ignore: true)
-  _$$_SuccessCopyWith<_$_Success> get copyWith =>
+  _$SuccessCopyWith<_Success> get copyWith =>
       throw _privateConstructorUsedError;
 }

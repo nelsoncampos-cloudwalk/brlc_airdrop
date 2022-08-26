@@ -5,6 +5,6 @@ class WalletsState with _$WalletsState {
   const factory WalletsState.initial() = _Initial;
   const factory WalletsState.loading() = _Loading;
   const factory WalletsState.success({
-    required EthPrivateKey wallet,
+    required String wallet,
   }) = _Success;
 }

@@ -174,7 +174,7 @@ packages:
     description:
       path: "."
       ref: develop
-      resolved-ref: "9ac39cd422180850f43811c5817bfb470444f97c"
+      resolved-ref: b601c7ae4efa60aa26eaa44164e7dc36a68ff915
       url: "git@github.com:cloudwalk/infinitepay-designsystem-flutter.git"
     source: git
     version: "0.0.1"
@@ -184,7 +184,7 @@ packages:
       name: equatable
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.3"
+    version: "2.0.5"
   fake_async:
     dependency: transitive
     description:

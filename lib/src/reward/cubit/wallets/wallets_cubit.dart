@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:bloc/bloc.dart';
+import 'package:brlc_airdrop/src/proxys/custom/rewarder/rewarder_proxy.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:web3dart/credentials.dart';
 
@@ -8,13 +9,16 @@ part 'wallets_cubit.freezed.dart';
 part 'wallets_state.dart';
 
 class WalletsCubit extends Cubit<WalletsState> {
-  WalletsCubit() : super(const WalletsState.initial());
+  final BrlcRewarderProxy brlcRewarderProxy;
+  WalletsCubit({
+    required this.brlcRewarderProxy,
+  }) : super(const WalletsState.initial());
 
-  void loadWallet() {
+  Future<void> loadWallet() async {
     emit(const WalletsState.loading());
 
-    final cred = EthPrivateKey.fromInt(BigInt.from(420));
+    final wallet = await brlcRewarderProxy.address();
 
-    emit(WalletsState.success(wallet: cred));
+    emit(WalletsState.success(wallet: wallet));
   }
 }

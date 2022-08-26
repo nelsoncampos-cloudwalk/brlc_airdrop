@@ -1,18 +1,20 @@
+import 'package:brlc_airdrop/src/proxys/custom/rewarder/rewarder_proxy.dart';
+
+import '../../../proxys/custom/rewarder/service/brlcRewarder.g.dart';
 import '../../../proxys/erc20/brlc/brlc_proxy.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:web3dart/web3dart.dart';
+import 'package:http/http.dart';
 
 part 'transfer_cubit.freezed.dart';
 part 'transfer_state.dart';
 
 class TransferCubit extends Cubit<TransferState> {
-  final Credentials credentials;
-  final BrlcProxy brlcProxy;
+  final BrlcRewarderProxy brlcRewarderProxy;
 
   TransferCubit({
-    required this.credentials,
-    required this.brlcProxy,
+    required this.brlcRewarderProxy,
   }) : super(const TransferState.initial());
 
   Future<void> transfer({
@@ -22,23 +24,16 @@ class TransferCubit extends Cubit<TransferState> {
     try {
       emit(const TransferState.loading());
 
-      final account = await credentials.extractAddress();
-      final currentBalance = await brlcProxy.balanceOf(
-        address: account.hex,
+      final credentials = EthPrivateKey.fromInt(BigInt.from(420));
+
+      final tx = await brlcRewarderProxy.reward(
+        address: address,
+        credentials: credentials,
       );
 
-      if (currentBalance >= amount) {
-        final tx = await brlcProxy.transfer(
-          from: address,
-          credentials: credentials,
-          amount: amount,
-        );
-
-        emit(TransferState.success(tx: tx));
-      } else {
-        emit(const TransferState.error(message: 'Insufficient balance'));
-      }
-    } catch (_) {
+      emit(TransferState.success(tx: tx));
+    } catch (e) {
+      print(e);
       emit(const TransferState.error(message: 'Something goes wrong'));
     }
   }
